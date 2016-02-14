@@ -111,16 +111,23 @@ def get_prices(first_url,second_url):
 
     for item in first_root.iter('type'):
         sell = item.find('sell')
-        sell = sell.find('min').text
+        sell_price = sell.find('min').text
 
-
-        first_system_prices[item.attrib['id']]= sell
+        #first_system_prices[item.attrib['id']] = {}
+        first_system_prices[item.attrib['id']] = {
+            'SELL'  : sell_price
+        }
 
     for item in second_root.iter('type'):
         sell = item.find('sell')
-        sell = sell.find('min').text
+        sell_price = sell.find('min').text
+        volume = sell.find('volume').text
 
-        second_system_prices[item.attrib['id']]= sell
+        #second_system_prices[item.attrib['id']] = {}
+        second_system_prices[item.attrib['id']] = {
+            'VOLUME' : volume,
+            'SELL'   : sell_price
+        }
 
     return first_system_prices, second_system_prices
 
@@ -148,6 +155,7 @@ def parse_input(raw_items, eve_items_name_dict):
         item = item.strip('\r\n')
         holding_items.append(item)
 
+    holding_items = sorted(holding_items)
     for item in holding_items:
         try:
             if eve_items_name_dict[item]:
@@ -155,7 +163,7 @@ def parse_input(raw_items, eve_items_name_dict):
         except KeyError:
             continue
 
-    return sorted(final_list)
+    return final_list
 
 if __name__ == '__main__':
     app.run()
