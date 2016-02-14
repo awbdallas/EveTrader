@@ -1,4 +1,3 @@
-import os
 import xml.etree.ElementTree as ET
 import urllib
 from flask import Flask, request, session, g, redirect, url_for, abort, \
