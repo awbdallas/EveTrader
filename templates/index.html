@@ -15,4 +15,11 @@
         <dd><input type="submit" value="Share">
     </dl>
 </form>
+<ul class="entries">
+{% for report in reports %}
+<li><h2>{{ report.title }}</h2> {{ report.text|safe }}</li>
+{% else %}
+<li><em>No reports have been rat yet.</em></li>
+{% endfor %}
+</ul>
 {% endblock %}

@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 {%  block body %}
-<h2>Report Results</h2>
 {% if error %}<p class="error"><strong>Error:</strong></p> {{ error }}{% endif %}
 <table>
     <tr>
@@ -10,7 +9,7 @@
     </tr>
     {% for item in input_items %}
         <tr>
-            <td> {{ EVE_ITEMS_TYPEID_DICT[item]['NAME'] }}</td>
+            <td> {{ eve_items_typeid_dict[item]['NAME'] }}</td>
             <td> {{ first_system_prices[item] }}</td>
             <td> {{ second_system_prices[item] }}</td>
         </tr>
