@@ -3,4 +3,21 @@ a, h1, h2       { color: #377ba8; }
 h1, h2          { font-family: 'Georgia', serif; margin: 0; }
 h1              { border-bottom: 2px solid #eee; }
 h2              { font-size: 1.2em; }
-table, tr, td   { border: 1px solid black; }
+table {
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    border-collapse:
+            collapse; border-spacing: 0;
+}
+
+td, th { border: 1px solid #CCC; height: 20px; }
+
+th {
+    background: #F3F3F3;
+    font-weight: bold;
+}
+
+td {
+    background: #FAFAFA;
+    text-align: center;
+}

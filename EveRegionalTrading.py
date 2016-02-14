@@ -11,8 +11,7 @@ SECRET_KEY = 'development key'
 DATABASE = '/tmp/flaskr.db'
 
 #For the actual program
-EVE_ITEMS_CSV = '/home/awbriggs/Development/EveRegionalTrading/eve_items/eve_items.csv'
-
+EVE_ITEMS_CSV = './eve_items/eve_items.csv'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
