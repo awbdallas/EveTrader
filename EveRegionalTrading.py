@@ -94,7 +94,22 @@ def get_market_information(input_items,first_system,second_system):
     first_url,second_url = make_url(input_items, first_system, second_system)
     first_system_prices, second_system_prices = get_prices(first_url,second_url)
 
+    first_system_prices, second_system_prices = get_margins(first_system_prices, second_system_prices)
+
     return first_system_prices,second_system_prices
+
+def get_margins(first_system_prices, second_system_prices):
+    for key in first_system_prices.keys():
+        first_price  = float(first_system_prices[key]['SELL'])
+        second_price = float(second_system_prices[key]['SELL'])
+
+        isk_margin = second_price - first_price
+        percentage_margin = (second_price/first_price) * 100 - 100
+
+        second_system_prices[key]['MARGIN%'] = round(percentage_margin, 2)
+        second_system_prices[key]['ISKMARGIN'] = round(isk_margin, 2)
+
+    return first_system_prices, second_system_prices
 
 def get_prices(first_url,second_url):
     first_system_prices = {}

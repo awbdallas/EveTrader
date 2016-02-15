@@ -3,18 +3,22 @@
 {% if error %}<p class="error"><strong>Error:</strong></p> {{ error }}{% endif %}
 <table>
     <tr>
-        <td>Name</td>
-        <td>Region A</td>
-        <td>Region B</td>
-        <td>Region B Volume</td>
+        <th>Name</th>
+        <th>Region A</th>
+        <th>Region B</th>
+        <th>Margin % (A -> B)</th>
+        <th>Margin ISK (A -> B)</th>
+        <th>Region B Volume</th>
     </tr>
     {% for item in input_items %}
         <tr>
             <td> {{ eve_items_typeid_dict[item]['TYPENAME'] }}</td>
             <td> {{ first_system_prices[item]['SELL'] }}</td>
             <td> {{ second_system_prices[item]['SELL'] }}</td>
+            <td> {{ second_system_prices[item]['MARGIN%'] }}</td>
+            <td> {{ second_system_prices[item]['ISKMARGIN'] }}</td>
             <td> {{ second_system_prices[item]['VOLUME'] }}</td>
         </tr>
-{% endfor %}
+    {% endfor %}
 </table>
 {% endblock %}
