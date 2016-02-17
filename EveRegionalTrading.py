@@ -37,9 +37,14 @@ def teardown_request(exception):
 
 @app.route('/')
 def get_input():
+
+    return render_template('index.html')
+
+@app.route('/create_report')
+def add_report():
     cur = g.db.execute('select title, text from reports order by id desc')
     reports = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]
-    return render_template('index.html', reports=reports)
+    render_template('create_report', reports=reports)
 
 @app.route('/report',methods=['POST'])
 def add_query():

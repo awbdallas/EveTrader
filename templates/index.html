@@ -1,25 +1,5 @@
 {% extends "layout.html" %}
 {%  block body %}
-<h2>EvE Regional Trading</h2>
+<h2>EvE Trader</h2>
 {% if error %}<p class="error"><strong>Error:</strong></p> {{ error }}{% endif %}
-<form action="{{ url_for('add_query') }}" method="post" class="add-query">
-    <dl>
-        <dt>Name of Report:
-        <dd><input type="text" size="30" name="report_name">
-        <dt>First System ID:
-        <dd><input type="text" size="30" name="first_system_id">
-        <dt>Second System ID:
-        <dd><input type="text" size="30" name="second_system_id">
-        <dt>Items:
-        <dd><textarea name="items_text" rows="5" cols="40"></textarea>
-        <dd><input type="submit" value="Share">
-    </dl>
-</form>
-<ul class="entries">
-{% for report in reports %}
-<li><h2>{{ report.title }}</h2> {{ report.text|safe }}</li>
-{% else %}
-<li><em>No reports have been rat yet.</em></li>
-{% endfor %}
-</ul>
 {% endblock %}
