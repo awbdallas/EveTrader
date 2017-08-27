@@ -1,33 +1,23 @@
 import xml.etree.ElementTree as ET
 import urllib
 import sqlite3
+
 from flask import Flask, request, session, g, redirect, url_for, abort, \
     render_template, flash
 from contextlib import closing
-
-#config
-DEBUG      = True
-SECRET_KEY = 'development key'
-DATABASE = '/tmp/flaskr.db'
-
-#For the actual program
-EVE_ITEMS_CSV = './eve_items/eve_items.csv'
+from config import DEBUG, SECRET_KEY, DATABASE
+from evedb import get_previous_reports, insert_new_report, connect_db, init_db
+from eveitems import EveItems
+from reportform import ReportForm
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-def connect_db():
-    return sqlite3.connect(app.config['DATABASE'])
-
-def init_db():
-    with closing(connect_db()) as db:
-        with app.open_resource('schema.sql', mode='r') as f:
-            db.cursor().executescript(f.read())
-        db.commit()
 
 @app.before_request
 def before_request():
-    g.db = connect_db()
+    g.db = connect_db(app)
+
 
 @app.teardown_request
 def teardown_request(exception):
@@ -35,73 +25,44 @@ def teardown_request(exception):
     if db is not None:
         db.close()
 
+
 @app.route('/')
 def get_input():
-
     return render_template('index.html')
 
-@app.route('/create_report')
+
+@app.route('/create_report', methods=['GET', 'POST'])
 def add_report():
-    cur = g.db.execute('select title, text from reports order by id desc')
-    reports = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]
-    render_template('create_report', reports=reports)
+    form = ReportForm(request.form)
+    if request.method == 'POST' and form.validate():
+        eve_items = EveItems()
 
-@app.route('/report',methods=['POST'])
-def add_query():
-    eve_items_typeid_dict, eve_items_name_dict = get_items()
+        print(form.reportname.data, form.items.data)
+        insert_new_report(form.reportname.data, form.items.data)
+        input_items = eve_items.get_item_info_from_typeid(form.items.data)
+        first_system_prices, second_system_prices = \
+            get_market_information(input_items, form.first_system_id.data,
+                    form.second_system_id.data)
 
-    report_title  = request.form['report_name']
-    input_items   = request.form['items_text']
-    first_system  = request.form['first_system_id']
-    second_system = request.form['second_system_id']
+        return render_template('report.html', input_items=input_items,
+                first_system_prices=first_system_prices,
+                second_system_prices=second_system_prices)
 
-    g.db.execute('insert into reports (title, text) values (?, ?)',
-                 [report_title, input_items.replace('\n', '<br />')])
-    g.db.commit()
+    return render_template('create_report.html', reports=get_previous_reports(), form=form)
 
-    input_items = parse_input(input_items, eve_items_name_dict)
-
-    first_system_prices,second_system_prices = \
-        get_market_information(input_items,first_system,second_system)
-
-
-    return render_template('report.html',input_items=input_items, first_system_prices=first_system_prices,
-                           second_system_prices=second_system_prices, eve_items_typeid_dict=eve_items_typeid_dict)
-
-def get_items():
-
-    holding_name_dict = {}
-    holding_typeid_dict = {}
-
-    for line in open(EVE_ITEMS_CSV):
-        line = line.strip('\r\n')
-        #TYPEID,GROUPID,TYPENAME,VOLUME
-        holding_array = line.split(',')
-        holding_name_dict[holding_array[2]] = {
-            'TYPEID'  : holding_array[0],
-            'GROUPID' : holding_array[1],
-            'VOLUME'  : holding_array[3]
-        }
-
-    for line in open(EVE_ITEMS_CSV):
-        line = line.strip('\r\n')
-        #TYPEID,GROUPID,TYPENAME,VOLUME
-        holding_array = line.split(',')
-        holding_typeid_dict[holding_array[0]] = {
-            'TYPENAME' : holding_array[2],
-            'GROUPID'  : holding_array[1],
-            'VOLUME'   : holding_array[3]
-        }
-
-    return holding_typeid_dict, holding_name_dict
+@app.cli.command('initdb')
+def initdb_command():
+    # all grabbed from http://flask.pocoo.org/docs/0.12/tutorial/dbinit/
+    init_db()
+    print('DB started')
 
 def get_market_information(input_items,first_system,second_system):
     first_url,second_url = make_url(input_items, first_system, second_system)
     first_system_prices, second_system_prices = get_prices(first_url,second_url)
-
     first_system_prices, second_system_prices = get_margins(first_system_prices, second_system_prices)
 
     return first_system_prices,second_system_prices
+
 
 def get_margins(first_system_prices, second_system_prices):
     for key in first_system_prices.keys():
@@ -115,6 +76,7 @@ def get_margins(first_system_prices, second_system_prices):
         second_system_prices[key]['ISKMARGIN'] = round(isk_margin, 2)
 
     return first_system_prices, second_system_prices
+
 
 def get_prices(first_url,second_url):
     first_system_prices = {}
@@ -132,7 +94,6 @@ def get_prices(first_url,second_url):
         sell = item.find('sell')
         sell_price = sell.find('min').text
 
-        #first_system_prices[item.attrib['id']] = {}
         first_system_prices[item.attrib['id']] = {
             'SELL'  : sell_price
         }
@@ -142,7 +103,6 @@ def get_prices(first_url,second_url):
         sell_price = sell.find('min').text
         volume = sell.find('volume').text
 
-        #second_system_prices[item.attrib['id']] = {}
         second_system_prices[item.attrib['id']] = {
             'VOLUME' : volume,
             'SELL'   : sell_price
@@ -150,39 +110,21 @@ def get_prices(first_url,second_url):
 
     return first_system_prices, second_system_prices
 
+
 def make_url(input_items,first_system,second_system):
+    # TODO: IIRC you're limited to 150 items for these requests
     base_url = 'http://api.eve-central.com/api/marketstat?'
-    #first_url
     first_url = base_url + "usesystem=" + first_system
     for item in input_items:
         first_url = first_url + '&' + "typeid=" + item
 
-    #second_url
     second_url = base_url + "usesystem=" + second_system
     for item in input_items:
         second_url = second_url + '&' +"typeid=" + item
 
     return first_url, second_url
 
-def parse_input(raw_items, eve_items_name_dict):
-    holding_items = []
-    final_list = []
-    raw_items = raw_items.encode('ascii', 'ignore')
-    raw_items = raw_items.split('\n')
 
-    for item in raw_items:
-        item = item.strip('\r\n')
-        holding_items.append(item)
-
-    holding_items = sorted(holding_items)
-    for item in holding_items:
-        try:
-            if eve_items_name_dict[item]:
-                final_list.append(eve_items_name_dict[item]['TYPEID'])
-        except KeyError:
-            continue
-
-    return final_list
 
 if __name__ == '__main__':
     app.run()

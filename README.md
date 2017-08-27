@@ -8,6 +8,7 @@ Setup
 virtualenv pyenv
 pyenv/bin/pip install -r requirements.txt
 export FLASK_APP=$(pwd)/EveRegionalTrading.py
+sqlite3 /tmp/flaskr.db < schema.sql
 pyenv/bin/flask run
 
 
