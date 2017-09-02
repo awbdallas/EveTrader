@@ -1,3 +1,4 @@
 tags
 pyenv
 *.pyc
+.idea

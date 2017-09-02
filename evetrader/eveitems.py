@@ -5,13 +5,11 @@ class EveItems:
     eve_name_dict = None
     eve_typeid_dict = None
 
-
     def __init__(self):
         self.eve_name_dict = {}
         self.eve_typeid_dict = {}
         self.populate_name_dict()
         self.populate_typeid_dict()
-
 
     def populate_name_dict(self):
         for line in open(EVE_ITEMS_CSV):
@@ -23,7 +21,6 @@ class EveItems:
                 'VOLUME'  : holding_array[3]
             }
 
-
     def populate_typeid_dict(self):
         for line in open(EVE_ITEMS_CSV):
             line = line.strip('\r\n')
@@ -33,7 +30,6 @@ class EveItems:
                 'GROUPID'  : holding_array[1],
                 'VOLUME'   : holding_array[3]
             }
-
 
     def get_item_info_from_typeid(self, raw_items):
         holding_items = []
