@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{%  block body %}
+{% if error %}<p class="error"><strong>Error:</strong></p> {{ error }}{% endif %}
+{% if form %}
+    <form method="POST" action="/market_report">
+        {{ form.csrf_token }}
+        Items: {{ form.items }}
+        <input type="submit" value="Submit">
+    </form>
+{% endif %}
+
+{% if result %}
+    <table>
+    <tr>
+        <th>Typeid</th>
+        <th>System</th>
+        <th>Buy Max</th>
+        <th>Sell Min</th>
+    </tr>
+
+    {% for item in result %}
+        <tr>
+            <td>{{ item['typeid'] }}</td>
+            <td>{{ item['systems'] }}</td>
+            <td>{{ item['buy_max'] }}</td>
+            <td>{{ item['sell_min'] }}</td>
+        </tr>
+    {% endfor %}
+
+    </table>
+{% endif %}
+
+{% endblock %}

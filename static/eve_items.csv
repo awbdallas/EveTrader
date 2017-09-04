@@ -1,3 +1,4 @@
+typeid,groupid,name,volume
 34,18,Tritanium,0.01
 35,18,Pyerite,0.01
 36,18,Mexallon,0.01
@@ -16821,7 +16822,7 @@
 30949,952,Josameto Verification Center,27500
 30950,673,Corporate Liaison,96000
 30951,314,Verification Key,3
-30952,314,Dossier  Author Unknown,0.1
+30952,314,Dossier ?? Author Unknown,0.1
 30953,952,Cargo Facility 7A-21,27500
 30954,314,Hyasyoda Captain,0.1
 30955,314,S.I Formula Sheet,0.1
@@ -18020,8 +18021,8 @@
 32368,306,Training Container - Salvaging,27500
 32369,1207,Training Container - Data,27500
 32370,306,Assembly Station DC105-A,100000000
-32371,314,Capital Ship Design  Dictator,0.1
-32372,283,Minedrill  E518 Crew,3
+32371,314,Capital Ship Design ?? ??Dictator??,0.1
+32372,283,Minedrill ?? E518 Crew,3
 32374,280,Holoreel GRS-81A,0.5
 32375,314,Proof of Discovery: Gas Passkey,1
 32376,314,Proof of Discovery: Gas,1
@@ -18029,7 +18030,7 @@
 32378,306,Training Container - Ore,27500
 32379,306,Training Container - Gas,27500
 32382,306,Damaged Caldari Shuttle,16120
-32383,314,Guristas Dirty' Explosive System,0.1
+32383,314,Guristas ??Dirty' Explosive System,0.1
 32384,671,Captured Caldari State Shuttle,5000
 32385,612,Guristas Battleship Vessel,1040000
 32386,226,Violent Wormhole,0
@@ -18044,7 +18045,7 @@
 32395,517,Atma Aulato's Falcon,0
 32396,517,Arment Caute's Lachesis,116000
 32397,517,Yada Vinjivas's Gila,101000
-32398,283,Lieutenant Kipo Foxfire Tekira,1
+32398,283,Lieutenant Kipo ??Foxfire?? Tekira,1
 32399,226,Statehood Incarnate Monument,0
 32400,597,Angel Frigate Vessel,19700
 32401,595,Angel Cruiser Vessel,101000
@@ -18053,7 +18054,7 @@
 32404,952,Cilis Leglise's Headquarters,27500
 32405,226,Serpentis Research Facility,0
 32406,306,Caldari Storage Warehouse,1150
-32407,314,Holoreel  Torture Log I15B,0.5
+32407,314,Holoreel ?? Torture Log I15B,0.5
 32408,314,Correspondence Log KL-513,0.5
 32409,517,Aton Hordner's Tempest,0
 32410,517,Arajna Ashia's Arbitrator,0
@@ -18413,14 +18414,14 @@
 33038,1195,NEO YC 114: Tinkerhell and Alts,0.01
 33039,1195,NEO YC 114: Tengu Terror,0.01
 33040,1195,NEO YC 114: Oxygen Isonopes,0.01
-33041,1195,NEO YC 114: Africas Finest,0.01
+33041,1195,NEO YC 114: Africa??s Finest,0.01
 33042,1195,NEO YC 114: Something Else,0.01
 33043,1195,NEO YC 114: The Exiled Gaming,0.01
 33044,1195,NEO YC 114: Perihelion Beryllium Duralumin,0.01
 33045,1195,NEO YC 114: Goggle Wearing Internet Crime Fighters,0.01
-33046,1195,NEO YC 114: ISN  Incursion Shiny Network,0.01
+33046,1195,NEO YC 114: ISN ?? Incursion Shiny Network,0.01
 33047,1195,NEO YC 114: Baaaramu,0.01
-33048,1195,NEO YC 114: Asine Hitamas team,0.01
+33048,1195,NEO YC 114: Asine Hitama??s team,0.01
 33049,1195,NEO YC 114: EFS,0.01
 33050,1195,NEO YC 114: Much Crying Old Experts,0.01
 33051,1195,NEO YC 114: DeepWater,0.01
@@ -19070,9 +19071,9 @@
 33856,257,Expedition Frigates,0.01
 33857,310,??????,1
 33858,226,???????,0
-33864,1285,Mordus Special Warfare Unit Operative,19700
-33865,1286,Mordus Special Warfare Unit Specialist,92000
-33866,1287,Mordus Special Warfare Unit Commander,486000
+33864,1285,Mordu??s Special Warfare Unit Operative,19700
+33865,1286,Mordu??s Special Warfare Unit Specialist,92000
+33866,1287,Mordu??s Special Warfare Unit Commander,486000
 33867,397,Thukker Component Assembly Array,12500
 33868,1048,Thukker Component Assembly Array Blueprint,0.01
 33869,419,Brutix Serpentis Edition,270000
@@ -19560,25 +19561,25 @@
 34412,997,Small Intact Hull Section,30
 34414,997,Small Malfunctioning Hull Section,30
 34416,997,Small Wrecked Hull Section,30
-34417,1194,Manufacturing Unions Placard,3
+34417,1194,Manufacturing Union??s Placard,3
 34418,1194,The Galactic Party Planning Guide,3
 34419,1194,Jump Fatigue Recovery Agent,3
 34420,1194,Cooking With Veldspar,3
-34421,1194,Chribbas Modified Strip Miner,3
-34422,1194,Rooks & Kings  The Clarion Call Compilation,3
+34421,1194,Chribba??s Modified Strip Miner,3
+34422,1194,Rooks & Kings ?? The Clarion Call Compilation,3
 34423,1194,Pre-Completed CSM 10 Ballot Paper,3
 34424,1194,Titanium Plated Cranial Shielding,3
-34425,1194,SCC Guidelines  Lotteries For Dummies,3
-34426,1194,Sort Dragons Guide To Diplomacy,3
+34425,1194,SCC Guidelines ?? Lotteries For Dummies,3
+34426,1194,Sort Dragon??s Guide To Diplomacy,3
 34427,1194,Polaris Eviction Notice,3
 34428,1194,Jump Portal Generation Instruction Holoreel,3
-34429,1194,Vincent Pryces Warp Disruption Field Generator,3
-34430,1194,"My God, Its Full Of Holes!",3
-34431,1194,Guillome Renards Sleeper Loot Stash,3
+34429,1194,Vincent Pryce??s Warp Disruption Field Generator,3
+34430,1194,"My God, It??s Full Of Holes!",3
+34431,1194,Guillome Renard??s Sleeper Loot Stash,3
 34432,1194,Sisters Of EVE Charity Statue,3
-34433,1194,The Damsels Drunk Bodyguard,3
-34434,1194,Alice Sakis Good Posting Guide,3
-34435,1194,Soxfours Spaceboots,3
+34433,1194,The Damsel??s Drunk Bodyguard,3
+34434,1194,Alice Saki??s Good Posting Guide,3
+34435,1194,Soxfour??s Spaceboots,3
 34436,1194,The Friend Ship,3
 34437,383,Rewired Sentry Gun,0
 34438,306,Sentry Repair Station,27500
@@ -22328,12 +22329,12 @@
 37886,1194,Capital Parking Ticket,0.01
 37887,1194,Counterfeit Dominix Model,0.01
 37888,1194,Starsi,0.01
-37889,1194,YC118 Succession Trial Champions Decree  House Tash-Murkon,0.01
-37892,1194,YC118 Succession Trial Champions Decree  House Ardishapur,0.01
-37893,1194,YC118 Succession Trial Champions Decree  House Kador,0.01
-37894,1194,YC118 Succession Trial Champions Decree  House Khanid,0.01
-37895,1194,YC118 Succession Trial Champions Decree  House Kor-Azor,0.01
-37896,1194,YC118 Succession Trial Champions Decree  House Sarum,0.01
+37889,1194,YC118 Succession Trial Champion??s Decree ?? House Tash-Murkon,0.01
+37892,1194,YC118 Succession Trial Champion??s Decree ?? House Ardishapur,0.01
+37893,1194,YC118 Succession Trial Champion??s Decree ?? House Kador,0.01
+37894,1194,YC118 Succession Trial Champion??s Decree ?? House Khanid,0.01
+37895,1194,YC118 Succession Trial Champion??s Decree ?? House Kor-Azor,0.01
+37896,1194,YC118 Succession Trial Champion??s Decree ?? House Sarum,0.01
 37897,1311,Apocalypse Ardishapur Serenity Only SKIN (Permanent),0.01
 37898,1311,Providence Ardishapur Serenity Only SKIN (Permanent),0.01
 37899,1311,Arbitrator Ardishapur Serenity Only SKIN (Permanent),0.01
@@ -25635,15 +25636,15 @@
 367439,350858,Militia Magsec SMG,0.01
 367440,350858,Militia Heavy Machine Gun,0.01
 367472,350858,Militia Flaylock Pistol,0.01
-367477,350858,Kubos GMK-16 Plasma Cannon,0.01
-367489,350858,Beacons ELI-74 Swarm Launcher,0.01
+367477,350858,Kubo??s GMK-16 Plasma Cannon,0.01
+367489,350858,Beacon??s ELI-74 Swarm Launcher,0.01
 367500,350858,Symb's FORK-5 Sniper Rifle,0.01
 367502,350858,Agimus' Modified AGO-56 Mass Driver,0.01
 367511,350858,Luis' Modified VC-107 Combat Rifle,0.01
 367517,350858,Kalante's RXS-05 Assault Rifle,0.01
 367519,350858,Ghalag's Modified MRT-17 Rail Rifle,0.01
 367528,350858,Darth's GIO-66 Scrambler Rifle,0.01
-367541,350858,Viktors NEG-1 Laser Rifle,0.01
+367541,350858,Viktor??s NEG-1 Laser Rifle,0.01
 367548,350858,Alex's Modified ZX-030 Heavy Machine Gun,0.01
 367549,350858,Alldin's IMP-10 Forge Gun,0.01
 367552,350858,Bons' SIN-7 Shotgun,0.01
