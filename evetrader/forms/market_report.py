@@ -1,9 +1,9 @@
-from flask import g
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired
 from evetrader.evecentral import get_prices
 from evetrader.eveitems import EveItems
+from evetrader.evedb import get_item_info
 
 
 class MarketForm(FlaskForm):
@@ -16,6 +16,7 @@ class MarketForm(FlaskForm):
     def handle(self):
         items, errors = self.get_valid_items()
         prices = get_prices(items)
+        print(prices)
         return prices, errors
 
     def get_valid_items(self):
@@ -23,9 +24,9 @@ class MarketForm(FlaskForm):
         errors = []
 
         for item in self.items.data.split(','):
-            item = item.strip().encode("utf-8")
+            item = get_item_info(item.strip().encode("utf-8"))
 
-            if self.eveitems.is_item(item):
+            if item:
                 items.append(item)
             else:
                 errors.append('Invalid item: %s' % item)

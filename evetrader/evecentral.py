@@ -5,28 +5,27 @@ from config import EVE_CENTRAL_MARKETSTAT_ENDPOINT
 def get_prices(items):
     urls = build_url(items)
     result = make_request(urls)
-    return parse_result(result)
+    return parse_result(result, items)
 
 
 def build_url(items):
     url = EVE_CENTRAL_MARKETSTAT_ENDPOINT
-    return url + '&'.join(['typeid=' + item for item in items]) + '&usesystem=30000142'
+    # TODO: Actually support other systems
+    return url + '&'.join(['typeid=' + item['typeid'] for item in items])\
+        + '&usesystem=30000142'
 
 
 def make_request(urls):
-    return get(urls).json()
+    # TODO support multiple urls like it's supposed to
+    return byteify(get(urls).json())
 
 
-def parse_result(result):
-    result = byteify(result)
-    items = []
-    for item in result:
-        items.append({
-            'typeid': item['buy']['forQuery']['types'][0],
-            'systems': item['buy']['forQuery']['systems'][0],
-            'buy_max': item['buy']['max'],
-            'sell_min': item['sell']['min']
-        })
+def parse_result(result, items):
+    print(result, items)
+    for item, resultitem in zip(items, result):
+        item['systems'] = resultitem['buy']['forQuery']['systems'][0]
+        item['buy_max'] = resultitem['buy']['max']
+        item['sell_min'] = resultitem['sell']['min']
 
     return items
 
