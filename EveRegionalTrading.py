@@ -22,7 +22,6 @@ def market_report():
     form = MarketForm()
     if request.method == 'POST' and form.validate():
         result, errors = form.handle()
-        print(result, errors)
         return render_template('market_report.html', errors=errors,
                                result=result)
 

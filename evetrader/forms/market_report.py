@@ -16,7 +16,6 @@ class MarketForm(FlaskForm):
     def handle(self):
         items, errors = self.get_valid_items()
         prices = get_prices(items)
-        print(prices)
         return prices, errors
 
     def get_valid_items(self):

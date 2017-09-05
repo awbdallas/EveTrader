@@ -21,7 +21,6 @@ def make_request(urls):
 
 
 def parse_result(result, items):
-    print(result, items)
     for item, resultitem in zip(items, result):
         item['systems'] = resultitem['buy']['forQuery']['systems'][0]
         item['buy_max'] = resultitem['buy']['max']
